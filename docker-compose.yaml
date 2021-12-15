@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+
+  jenkins:
+    build: .
+    volumes:
+      - jenkins:/var/jenkins_home
+    ports:
+      - "8000:8080"
+    environment:
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD=password
+  web:
+    build: ./web
+    ports:
+      - "8080:80"
+      - "1022:22"
+
+volumes:
+  jenkins:
