@@ -10,11 +10,19 @@ services:
     environment:
       - JENKINS_ADMIN_ID=admin
       - JENKINS_ADMIN_PASSWORD=password
+    networks:
+      - jenkins
   web:
     build: ./web
     ports:
       - "8080:80"
       - "1022:22"
+    networks:
+      - jenkins
+
+networks:
+  jenkins:
+    driver: bridge
 
 volumes:
   jenkins:
